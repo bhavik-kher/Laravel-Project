@@ -1,0 +1,38 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    return [
+        'title' => str_random(10),
+    ];
+});
+// $factory->define(App\User::class, function (Faker\Generator $faker) {
+//     static $password;
+
+//     return [
+//         'first_name' => $faker->first_name,
+//         'last_name' => $faker->last_name,
+//         'email' => $faker->unique()->safeEmail,
+//         'password' => $password ?: $password = bcrypt('secret'),
+//         'phone' => range(1,999999999),
+//     ];
+// });
+
+
+
+// $factory->define(App\Project::class, function (Faker\Generator $faker) {
+//     return [
+//         'name' => $faker->sentence,
+//     ];
+// });

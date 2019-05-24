@@ -1,0 +1,85 @@
+/* your styles go here */
+
+footer.main-footer{
+	padding: 0 !important;
+}
+.bootstrap-tagsinput{
+	width:100%;
+}
+.bootstrap-tagsinput .tag{
+	/*color:black !important;*/
+	padding: 3px;
+    background-color: #5bc0de;
+}
+.post {
+	position: relative;
+    /*border: 1px solid gray;	
+    border-radius: 3px;*/
+    /*padding-bottom: 20px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);*/
+}
+
+.post .overlay {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+}
+
+.post:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+
+.post .buttonEdit {
+  	position: absolute;
+    /*width: 100%;*/
+    /*left: 0px;*/
+    top: 0;
+    right: 50px;
+    opacity: 0;
+    height: 35px;
+    transition: opacity .35s ease;
+
+}
+
+.post .buttonEdit .btn {
+    width: 50px;
+    padding: 5px 10px;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.post:hover .buttonEdit {
+  opacity: 1;
+}
+
+
+.post .buttonDelete {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    opacity: 0;
+    height: 35px;
+    transition: opacity .35s ease;
+}
+
+.post .buttonDelete .btn {
+    width: 50px;
+    padding: 5px 10px;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.post:hover .buttonDelete {
+  opacity: 1;
+}
+
+.post-thumbnail{
+    min-height:200px 
+}
