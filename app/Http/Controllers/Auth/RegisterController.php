@@ -76,8 +76,9 @@ class RegisterController extends Controller
 
         if(count($data['categories'])){
             foreach($data['categories'] as $id){
-                $user->categories()->attach($id);        }
+                $user->categories()->attach($id);        
             }
+        }
         return $user; 
     }
 }

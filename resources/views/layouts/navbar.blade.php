@@ -26,6 +26,9 @@
 
                   <ul class="dropdown-menu" role="menu">
                       <li class="nav-item">
+                        <li class="nav-item"><a href="{{route('user.profile.edit')}}" class="nav-link">Settings</a>
+                      </li>
+                      <li class="nav-item">
                           <a href="{{ route('logout') }}" class="nav-link"
                               onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">

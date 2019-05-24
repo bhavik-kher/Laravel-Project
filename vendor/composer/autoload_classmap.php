@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Article' => $baseDir . '/app/Article.php',
+    'App\\Articlestatus' => $baseDir . '/app/Articlestatus.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
@@ -39,6 +40,7 @@ return array(
     'Carbon\\Translator' => $vendorDir . '/nesbot/carbon/src/Carbon/Translator.php',
     'CreateArticleCategoryTable' => $baseDir . '/database/migrations/2019_05_22_121112_create_article_category_table.php',
     'CreateArticlesTable' => $baseDir . '/database/migrations/2019_05_22_121057_create_articles_table.php',
+    'CreateArticlestatusTable' => $baseDir . '/database/migrations/2019_05_24_063237_create_articlestatus_table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2019_05_21_101932_create_categories_table.php',
     'CreateCategoryUserTable' => $baseDir . '/database/migrations/2019_05_22_060541_create_category_user_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',

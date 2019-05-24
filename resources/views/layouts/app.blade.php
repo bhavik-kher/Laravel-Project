@@ -119,7 +119,7 @@
 </head>
 <body>
     @include('layouts.navbar')
-
+        @include('layouts.flash-message')
         @yield('content')
     
     {{-- @include('layouts.footer') --}}

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Article;
 use Illuminate\Http\Request;
-
+use App\Articlestatus;
 class ArticleController extends Controller
 {
     public function __construct()
@@ -19,9 +19,18 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // $articles = Article::where('user')->latest()->get();
         $user = Auth::user();
         $articles = $user->articles;
+        foreach($articles as $key => $article){
+            $totleLikeDislikes = getTotalLikeDislikes($article->id);
+            $articles[$key]['likes'] =  $totleLikeDislikes['likes'];
+            $articles[$key]['dislikes'] =  $totleLikeDislikes['dislikes'];
+            
+            $articles[$key]['blocked'] = isThisArticleBlocledByUser($article->id,\Auth::user()->id);
+            $likedordisliked = isArticleLikedOrDislikedByUser($article->id,\Auth::user()->id);
+            $articles[$key]['liked'] = $likedordisliked['liked'];
+            $articles[$key]['disliked'] = $likedordisliked['disliked'];
+        }
         return view('article.index',compact('articles'));
     }
 
@@ -82,8 +91,6 @@ class ArticleController extends Controller
             return redirect('/')->with('success','Article Created');
         }
         
-        
-        
     }
 
     /**
@@ -95,6 +102,13 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         // $article = Article::findOrFail();
+        $totleLikeDislikes = getTotalLikeDislikes($article->id);
+        $article['likes'] =  $totleLikeDislikes['likes'];
+        $article['dislikes'] =  $totleLikeDislikes['dislikes'];
+        $article['blocked'] = isThisArticleBlocledByUser($article->id,\Auth::user()->id);
+        $likedordisliked = isArticleLikedOrDislikedByUser($article->id,\Auth::user()->id);
+        $article['liked'] = $likedordisliked['liked'];
+        $article['disliked'] = $likedordisliked['disliked'];
         return view('article.show',compact('article'));
     }
 
@@ -178,5 +192,69 @@ class ArticleController extends Controller
 
     public function showArticlebyCategory($categoryid){
 
+    }
+
+    public function articleAction(Request $request){
+        $action = $request->action;
+        $articleid = $request->articleid;
+        $isAlreadyLiked = false;
+        $isAlreadyDisliked = false;
+
+        if($action == 'like'){
+            #find if already liked or not
+            #if liked then redirect back 
+            
+            $liked = Articlestatus::where('userid','=',\Auth::user()->id)->where('articleid','=',$articleid)->where('likes','=','1')->first();
+            if(!$liked){
+                Articlestatus::create([
+                    'userid' => \Auth::user()->id,
+                    'articleid' => $articleid,
+                    'likes' => '1'
+                ]);
+            }else{
+                $isAlreadyLiked = true;
+            }
+            #find if this article disliked by current user
+            #if disliked then remove it
+            $disliked = Articlestatus::where('userid','=',\Auth::user()->id)->where('articleid','=',$articleid)->where('dislikes','=','1')->first();
+            if($disliked){
+                Articlestatus::where('id','=',$disliked->id)->delete();
+            }
+            $totleLikeDislikes = getTotalLikeDislikes($articleid);
+            $resData = [
+                'success' => true,
+                'likes' => $totleLikeDislikes['likes'],
+                'dislikes' => $totleLikeDislikes['dislikes'],
+                'isAlreadyLiked' => $isAlreadyLiked
+            ];  
+            return response()->json($resData);
+
+        }elseif($action == 'dislike'){
+            $disliked = Articlestatus::where('userid','=',\Auth::user()->id)->where('articleid','=',$articleid)->where('dislikes','=','1')->first();
+            if(!$disliked){
+                Articlestatus::create([
+                    'userid' => \Auth::user()->id,
+                    'articleid' => $articleid,
+                    'dislikes' => '1'
+                ]);
+            }else{
+                $isAlreadyDisliked = true;
+            }
+            #find if this article disliked by current user
+            #if disliked then remove it
+            $liked = Articlestatus::where('userid','=',\Auth::user()->id)->where('articleid','=',$articleid)->where('likes','=','1')->first();
+            if($liked){
+                Articlestatus::where('id','=',$liked->id)->delete();
+            }
+            $totleLikeDislikes = getTotalLikeDislikes($articleid);
+            $resData = [
+                'success' => true,
+                'likes' => $totleLikeDislikes['likes'],
+                'dislikes' => $totleLikeDislikes['dislikes'],
+                'isAlreadyDisliked' => $isAlreadyDisliked
+            ];  
+            return response()->json($resData);
+
+        }
     }
 }

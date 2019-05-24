@@ -11,7 +11,9 @@ Route::put('articles/update/{article}', 'ArticleController@update')->name('artic
 Route::get('articles/create', 'ArticleController@create');
 Route::post('articles/store', 'ArticleController@store');
 Route::delete('/article/{article}', 'ArticleController@destroy')->name('article.destroy');
-
+Route::post('articles/action','ArticleController@articleAction');
+Route::get('profile/edit','ProfileController@edit')->name('user.profile.edit');
+Route::put('profile/update/{user}','ProfileController@update')->name('user.profile.update');
 // Route::group(['middleware' => 'web'], function () {
 //  Route::delete('/home/destroy',[
 //   'as'=> 'home.destroy',

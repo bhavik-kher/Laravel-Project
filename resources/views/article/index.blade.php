@@ -29,7 +29,16 @@
                                             <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
                                                 <div class="title"><span>{{$article->user->full_name}}</span></div></a>
                                                 <div class="date"><i class="icon-clock"></i>{{$article->created_at->diffForHumans() }}</div>
-                                                {{-- <div class="comments meta-last"><i class="icon-comment"></i>12</div> --}}
+                                                <div class="comments meta-last">
+                                                <ul class="menu-content">
+                                                    <li title="like"><a href="javascript:;" id="likes_{{$article->id}}" action="like"
+                                                            class="fa @if($article->liked) {{'fa-thumbs-up'}} @else {{'fa-thumbs-o-up'}} @endif articleAction likes"
+                                                            articleid="{{$article->id}}"><span>{{$article->likes}}</span></a></li>
+                                                    <li title="dislike"><a href="javascript:;" id="dislikes_{{$article->id}}" action="dislike"
+                                                            class="fa @if($article->disliked) {{'fa-thumbs-up'}} @else {{'fa-thumbs-o-down'}} @endif articleAction dislikes"
+                                                            articleid="{{$article->id}}"><span>{{$article->dislikes}}</span></a></li>
+                                                </ul>
+                                            </div>
                                             </footer>
                                         </div>
                                     </div>

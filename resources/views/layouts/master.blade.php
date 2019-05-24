@@ -53,6 +53,8 @@
     <!-- Custome Scripts -->
 
     @yield('custom_script')
-    
+    <script type="text/javascript">
+        let articleActionUrl = '{{url("articles/action")}}';
+    </script>
 </body>
 </html>

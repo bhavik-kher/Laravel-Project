@@ -287,6 +287,7 @@ class ComposerStaticInit266667f20e42acb82b0e70900d56f6ce
 
     public static $classMap = array (
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
+        'App\\Articlestatus' => __DIR__ . '/../..' . '/app/Articlestatus.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -319,6 +320,7 @@ class ComposerStaticInit266667f20e42acb82b0e70900d56f6ce
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'CreateArticleCategoryTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_22_121112_create_article_category_table.php',
         'CreateArticlesTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_22_121057_create_articles_table.php',
+        'CreateArticlestatusTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_24_063237_create_articlestatus_table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_21_101932_create_categories_table.php',
         'CreateCategoryUserTable' => __DIR__ . '/../..' . '/database/migrations/2019_05_22_060541_create_category_user_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
